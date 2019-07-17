@@ -25,3 +25,37 @@ function throttle(f, ms) {
         }, ms)
     }
 }
+
+
+
+
+function debounce(f, ms) {
+    let isCoolDown = false;
+    return function() {
+        if(isCoolDown) return;
+        f.apply(this, arguments)
+        isCoolDown = true;
+        setTimeout(() => isCoolDown = false, ms)
+    }
+}
+
+
+module.exports = {
+    throttle,
+    debounce
+}
+function debounce(f, ms) {
+    let isCoolDown = false;
+    return function() {
+        if(isCoolDown) return;
+        f.apply(this, arguments)
+        isCoolDown = true;
+        setTimeout(() => isCoolDown = false, ms)
+    }
+}
+
+
+module.exports = {
+    throttle,
+    debounce
+}
