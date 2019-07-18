@@ -27,7 +27,17 @@ function throttle(f, ms) {
 }
 
 
-
+const partial = (fn, ...args) => (...moreArgs) => fn.apply(null, args.concat(moreArgs))
+const compose = (...functions) => (data) => functions.reduceRight((acc, fn) => fn(acc), data)
+const inc = x => x + 1
+const identity = x => x
+const map = f => x => Array.prototype.map.call(x, f)
+const filter = f => x => Array.prototype.filter.call(x, f)
+const sort = f => x => Array.prototype.sort.call(x, f)
+const join = seperator => list => Array.prototype.join.call(list, seperator)
+const set = prop => obj => value => (obj[prop] = value, obj)
+const setR = prop => value => obj => (obj[prop] = value, obj)
+const pick = key => obj => obj[key];
 
 function debounce(f, ms) {
     let isCoolDown = false;
@@ -61,6 +71,17 @@ function promisify(f, manyArgs = false) {
 
 
 module.exports = {
+    partial,
+    compose,
+    inc,
+    identity,
+    map,
+    filter,
+    sort,
+    join,
+    set,
+    setR,
+    pick,
     throttle,
     debounce,
     promisify
