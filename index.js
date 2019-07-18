@@ -69,6 +69,14 @@ function promisify(f, manyArgs = false) {
 };
 
 
+
+const sortingFns = {
+  'string': (a, b) => a.localeCompare(b),
+  'number': (a, b) => a - b,
+  'boolean': (a, b) => a === b ? 0 : a ? -1 : 1
+}
+
+
 module.exports = {
     partial,
     compose,
@@ -83,5 +91,6 @@ module.exports = {
     pick,
     throttle,
     debounce,
-    promisify
+    promisify,
+    sortingFuns
 }
